@@ -1,14 +1,8 @@
 <template>
     <div class="page main">
-        <section class="banner">
-<!--            <div class="banner-content">-->
-                <img src="../assets/img/banner.png" alt="banner"/>
-<!--            </div>-->
-        </section>
+        <MainBanner/>
         <achievements :content="content"/>
-
-
-
+        <Catalog :content="list"/>
     </div>
 </template>
 
@@ -18,14 +12,16 @@
 
 
     import SG from "~/components/_sg.vue";
+    import MainBanner from "~/components/main/MainBanner.vue";
     import Achievements from "~/components/main/Achievements.vue";
+    import Catalog from "~/components/main/Catalog.vue";
 
     @Component({
         components: {
-            SG,Achievements
+            SG,MainBanner,Achievements,Catalog
         }
     })
-    export default class Example extends Vue {
+    export default class Index extends Vue {
         public title: string = 'ГЛАВНАЯ'
         public head(){
             return{
@@ -82,7 +78,7 @@
                 title: 'Коммерческая недвижимость',
                 cnt: ' Реализовано'
             }, {
-                icon: 'plus.jpg',
+                icon: 'plus.png',
                 title: 'Медицинские учреждения',
                 cnt: ' Реализовано'
             }, {

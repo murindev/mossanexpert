@@ -1,3 +1,7 @@
+/*@break_lg: 1215px;
+@break_md: 960px;
+@break_sm: 780px;
+@break_xs: 560px;*/
 body,
 div,
 dl,
@@ -225,6 +229,9 @@ img {
   font-style: italic;
 }
 */
+.mainFilter {
+  filter: drop-shadow(0px 10px 30px rgba(17, 14, 35, 0.8));
+}
 .LatoRegular {
   font-family: 'LatoRegular', sans-serif;
 }
@@ -295,7 +302,7 @@ label.debug-it {
   padding-left: 25px;
   padding-right: 25px;
 }
-@media screen and (max-width: 780px) {
+@media screen and (max-width: 1400px) {
   .debug-in > div {
     padding-left: 0px;
     padding-right: 0px;
@@ -347,7 +354,7 @@ body.active {
   padding-left: 25px;
   padding-right: 25px;
 }
-@media screen and (max-width: 780px) {
+@media screen and (max-width: 1400px) {
   .row {
     padding-left: 0px;
     padding-right: 0px;
@@ -368,7 +375,7 @@ div {
   padding-left: 25px;
   padding-right: 25px;
 }
-@media screen and (max-width: 780px) {
+@media screen and (max-width: 1400px) {
   .page {
     padding-left: 0px;
     padding-right: 0px;
@@ -466,6 +473,67 @@ width: 100%;
 .header-personal-user > img {
   max-width: 57px;
   height: auto;
+}
+.footer {
+  width: 100%;
+  display: flex;
+  height: 100px;
+}
+.footer-menu {
+  flex: none;
+  width: 350px;
+  padding-left: 35px;
+}
+.footer-menu-items {
+  display: inline-flex;
+  justify-content: space-between;
+  height: 45px;
+  border-radius: 8px;
+  background: #2C2853;
+  margin-left: 7px;
+}
+.footer-menu-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  filter: drop-shadow(0px 10px 30px rgba(17, 14, 35, 0.8));
+  padding-left: 21px;
+  padding-right: 21px;
+  white-space: nowrap;
+  text-decoration: none;
+  position: relative;
+}
+.footer-menu-item span {
+  font-size: 16px;
+  font-weight: 700;
+  color: #6A698E;
+}
+.footer-menu-item span em {
+  color: #9C9BB9;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.footer-menu-item.active span em {
+  color: #1A1C48;
+}
+.footer-menu-item.active:after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 59px;
+  background: #fff;
+  position: absolute;
+  z-index: -1;
+  border-radius: 6px;
+  filter: drop-shadow(0px 10px 30px rgba(17, 14, 35, 0.8));
+}
+.footer-links.row {
+  justify-content: center;
+}
+.footer-theme {
+  flex: none;
+  width: 350px;
+  padding-left: 35px;
 }
 .container {
   display: flex;
@@ -634,8 +702,11 @@ address a {
   display: inline-block;
 }
 .banner-content {
-  /*    .col();
-    .size(24);*/
+  box-sizing: border-box;
+  word-wrap: break-word;
+  margin-left: 6px;
+  margin-right: 6px;
+  width: calc(100% - 12px);
   border-radius: 10px;
 }
 .banner-content img {
@@ -643,6 +714,14 @@ address a {
 }
 .achievements {
   margin-top: 50px;
+}
+.achievements-items {
+  box-sizing: border-box;
+  word-wrap: break-word;
+  display: flex;
+  width: 100%;
+  margin-left: 6px;
+  margin-right: 6px;
   justify-content: space-between;
 }
 .achievements-item {
@@ -674,5 +753,64 @@ address a {
   padding-left: 12px;
   padding-top: 5px;
   font-weight: 600;
+}
+.catalog {
+  margin-top: 69px;
+  position: relative;
+}
+.catalog:before {
+  content: '';
+  display: block;
+  height: calc(100% - 43px);
+  position: absolute;
+  top: 0;
+  left: 6px;
+  border-left: 0.5px solid #6A6E94;
+}
+.catalog-item {
+  display: flex;
+  text-decoration: none;
+  margin-bottom: 43px;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  margin-left: 6px;
+  margin-right: 6px;
+  width: calc(25% - 12px);
+}
+@media screen and (max-width: 1600px) {
+  .catalog-item {
+    width: calc(33.333333333333336% - 12px);
+  }
+}
+@media screen and (max-width: 1400px) {
+  .catalog-item {
+    width: calc(50% - 12px);
+  }
+}
+.catalog-item-icon {
+  margin-left: 32px;
+  margin-right: 23px;
+}
+.catalog-item .icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 46px;
+  height: 46px;
+  border: 1px solid #666C99;
+  border-radius: 50%;
+}
+.catalog-item-text {
+  height: 56px;
+  display: flex;
+  flex-direction: column;
+}
+.catalog-item-text p {
+  font-size: 13px;
+  color: #666C99;
+}
+.catalog-item-text span {
+  color: #fff;
+  margin-top: auto;
 }
 /*# sourceMappingURL=style.css.map */

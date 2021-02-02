@@ -1,41 +1,12 @@
 <template>
     <div>
-        <header>
-            <div class="header">
-                <div class="header-logo">
-                    <a href="javascript:">
-                        <img src="../assets/img/logo.png" alt="logotype"/>
-                    </a>
-                </div>
-
-                <div class="header-content row">
-                    <p>ГЛАВНАЯ</p>
-                </div>
-
-                <div class="header-personal">
-                    <div class="header-personal-greeting">
-                        <p><span>ВХОД</span> В ЛИЧНЫЙ КАБИНЕТ</p>
-                        Авторизуйтесь
-                    </div>
-
-                    <a class="header-personal-user" href="javascript:" rel="3">
-                        <img src="../assets/img/user.png" alt="user"/>
-                    </a>
-                </div>
-            </div>
-
-        </header>
-
+        <MainHeader/>
         <div class="container">
             <aside-menu/>
             <Nuxt/>
             <aside-contacts/>
         </div>
-
-        <footer>
-            footer
-        </footer>
-
+        <MainFooter/>
         <s-g/>
     </div>
 </template>
@@ -46,12 +17,14 @@
 
 
     import SG from "~/components/_sg.vue";
+    import MainHeader from "~/components/common/MainHeader.vue";
     import AsideContacts from "~/components/aside/AsideContacts.vue";
     import AsideMenu from "~/components/aside/AsideMenu.vue";
+    import MainFooter from "~/components/common/MainFooter.vue";
 
     @Component({
         components: {
-            SG, AsideContacts, AsideMenu
+            SG, MainHeader, AsideContacts, AsideMenu, MainFooter
         }
     })
     export default class LayoutDefault extends Vue {

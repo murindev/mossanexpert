@@ -1,9 +1,13 @@
 @columns: 24;
 @atom: (100% / @columns);
 
-@break_lg: 1215px;
+/*@break_lg: 1215px;
 @break_md: 960px;
 @break_sm: 780px;
+@break_xs: 560px;*/
+@break_lg: 1215px;
+@break_md: 1600px;
+@break_sm: 1400px;
 @break_xs: 560px;
 
 @offset: 12px;
@@ -66,6 +70,14 @@
 .col(){
     box-sizing: border-box;
     word-wrap: break-word;
+    .col-offsets(margin);
+}
+
+.col100(){
+    box-sizing: border-box;
+    word-wrap: break-word;
+    display: flex;
+    width: 100%;
     .col-offsets(margin);
 }
 

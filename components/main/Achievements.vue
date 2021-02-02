@@ -1,12 +1,15 @@
 <template>
     <section class="achievements">
-        <div class="achievements-item" v-for="item in content">
-            <div class="achievements-item-slogan">
-                <div class="achievements-item-title" v-html="item.title"></div>
-                <div class="achievements-item-subtitle" v-html="item.subtitle"></div>
+        <div class="achievements-items">
+            <div class="achievements-item" v-for="item in content">
+                <div class="achievements-item-slogan">
+                    <div class="achievements-item-title" v-html="item.title"></div>
+                    <div class="achievements-item-subtitle" v-html="item.subtitle"></div>
+                </div>
+                <div class="achievements-item-text" v-html="item.text"></div>
             </div>
-            <div class="achievements-item-text" v-html="item.text"></div>
         </div>
+
     </section>
 </template>
 
