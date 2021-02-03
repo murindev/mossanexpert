@@ -1,14 +1,16 @@
 <template>
-    <div class="page main">
-        <MainBanner/>
-        <achievements :content="content"/>
-        <Catalog :content="list"/>
-    </div>
+<!--    <div class="vuebar-element" v-bar="{ scrollThrottle: 30, }">-->
+
+        <div class="page main" >
+            <MainBanner/>
+            <achievements :content="content"/>
+            <Catalog :content="list"/>
+        </div>
+<!--    </div>-->
 </template>
 
 <script lang="ts">
-    import { Component, Vue } from 'nuxt-property-decorator'
-
+    import {Component, Vue} from 'nuxt-property-decorator'
 
 
     import SG from "~/components/_sg.vue";
@@ -18,13 +20,14 @@
 
     @Component({
         components: {
-            SG,MainBanner,Achievements,Catalog
+            SG, MainBanner, Achievements, Catalog
         }
     })
     export default class Index extends Vue {
         public title: string = 'ГЛАВНАЯ'
-        public head(){
-            return{
+
+        public head() {
+            return {
                 title: this.title,
                 meta: [
                     {
@@ -41,11 +44,11 @@
                 title: '20 лет',
                 subtitle: 'опыта',
                 text: 'Успешная<br/>работа<br/>с 2001 года'
-            },{
+            }, {
                 title: 'электронный',
                 subtitle: 'документооборот',
                 text: 'Пользуйтесь <br/>преимуществами<br/>моментальной<br/>доставки документов'
-            },{
+            }, {
                 title: 'личный B2B',
                 subtitle: 'кабинет клиента',
                 text: 'Автоматизация<br/>обслуживания<br/>клиентов'
@@ -104,6 +107,7 @@
             },
         ]
 
-        mounted(){}
+        mounted() {
+        }
     }
 </script>
