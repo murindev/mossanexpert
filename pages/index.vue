@@ -1,12 +1,39 @@
 <template>
-<!--    <div class="vuebar-element" v-bar="{ scrollThrottle: 30, }">-->
 
-        <div class="page main" >
-            <MainBanner/>
-            <achievements :content="content"/>
-            <Catalog :content="list"/>
+    <div v-if="userAgent === 'pc'" class="container-row"  v-bar>
+
+        <div class="container-col">
+
+            <MainBanner :image="storage + fetchedData.staticData.image"  :slogan="fetchedData.staticData.image_text"/>
+
+            <achievements :content="fetchedData.staticData.achievement_block"/>
+
+            <BranchesRealised :content="fetchedData.branches" alias="/branches/"/>
+
         </div>
-<!--    </div>-->
+    </div>
+
+    <div v-else class="container-row">
+
+        <div class="container-col">
+
+            <MainBanner
+                    :image="storage + fetchedData.staticData.image"
+                    :slogan="fetchedData.staticData.image_text"/>
+
+            <achievements :content="fetchedData.staticData.achievement_block"/>
+
+<!--            <BranchesRealised :content="fetchedData.branches" alias="/branches/"/>-->
+
+            <BlockCatalog
+                    title="Для кого мы работаем"
+                    :list="fetchedData.branches"
+                    :path="storage"
+                    link="/#/branches/"/>
+
+        </div>
+    </div>
+
 </template>
 
 <script lang="ts">
@@ -17,97 +44,100 @@
     import MainBanner from "~/components/main/MainBanner.vue";
     import Achievements from "~/components/main/Achievements.vue";
     import Catalog from "~/components/main/Catalog.vue";
+    import WarrantyText from "~/components/blocks/BlockText.vue";
+    import {IPage} from "~/types/page";
+    import BranchesRealised from "~/components/main/BranchesRealised.vue";
+
+    // const jq = require('jquery')
+
 
     @Component({
         components: {
-            SG, MainBanner, Achievements, Catalog
+            BranchesRealised,
+            SG, MainBanner, Achievements, Catalog, WarrantyText
+        },
+        async asyncData({$axios, params, payload, route, env}) {
+
+            const fetchedData = await $axios.$post(env.serverUrl + '/api/page'
+                // {
+                //     catalog: 'forBusiness',
+                //     page_id: 'business',
+                // }
+                /*                , {
+                                    headers: {
+                                        'Accept': 'text/plain',
+                                        'Content-Type': 'text/plain',
+                                        'Origin': 'http://www.nuxt.mossanexpert.com',
+                                    }
+                                }*/
+                , {
+                    catalog: 'forBusiness',
+                    page_id: 'business',
+                }
+            )
+
+            return {
+                fetchedData: await fetchedData,
+                storage: env.storage
+            }
+
         }
     })
     export default class Index extends Vue {
-        public title: string = 'ГЛАВНАЯ'
+        public userAgent = '';
+
+        async timeweb() {
+            let hh = await this.$axios.get(process.env.serverUrl + '/header'
+                /*                , {
+                                headers: {
+                                    'Accept': 'application/json',
+                                    'Content-Type': 'application/json',
+                                }
+                            }*/
+            )
+
+            console.log('timeweb', hh);
+        }
+
+
+        async other() {
+            let hh = await this.$axios.get('http://194.87.232.56/test')
+
+            console.log('other', hh);
+        }
+
+
+        public fetchedData!: IPage
+
+        public storage!: string
 
         public head() {
             return {
-                title: this.title,
+                title: this.fetchedData.staticData?.meta_title,
                 meta: [
                     {
-                        hid: 'Описание ',
+                        hid: 'description ',
                         name: 'description',
-                        content: 'Home page description'
+                        content: this.fetchedData.staticData?.meta_description
+                    },
+                    {
+                        hid: 'keywords ',
+                        name: 'keywords',
+                        content: this.fetchedData.staticData?.meta_keywords
                     }
                 ],
             }
         }
 
-        public content = [
-            {
-                title: '20 лет',
-                subtitle: 'опыта',
-                text: 'Успешная<br/>работа<br/>с 2001 года'
-            }, {
-                title: 'электронный',
-                subtitle: 'документооборот',
-                text: 'Пользуйтесь <br/>преимуществами<br/>моментальной<br/>доставки документов'
-            }, {
-                title: 'личный B2B',
-                subtitle: 'кабинет клиента',
-                text: 'Автоматизация<br/>обслуживания<br/>клиентов'
-            }
-        ]
 
-        public list = [
-            {
-                icon: 'plant.png',
-                title: 'Производственные предприятия',
-                cnt: ' Реализовано'
-            }, {
-                icon: 'cart.png',
-                title: 'Ритейл',
-                cnt: ' Реализовано'
-            }, {
-                icon: 'truck.png',
-                title: 'Логистика - автотранспорт',
-                cnt: ' Реализовано'
-            }, {
-                icon: 'suitcase.png',
-                title: 'Гостиничный бизнес',
-                cnt: ' Реализовано'
-            }, {
-                icon: 'food.png',
-                title: 'Ресторанный бизнес, Общепит, Кейтеринг',
-                cnt: ' Реализовано'
-            }, {
-                icon: 'currency.png',
-                title: 'Коммерческая недвижимость',
-                cnt: ' Реализовано'
-            }, {
-                icon: 'plus.png',
-                title: 'Медицинские учреждения',
-                cnt: ' Реализовано'
-            }, {
-                icon: 'smile.png',
-                title: 'Детские и образовательные учреждения',
-                cnt: ' Реализовано'
-            }, {
-                icon: 'fox.png',
-                title: 'Сельское хозяйство',
-                cnt: ' Реализовано'
-            }, {
-                icon: 'house.png',
-                title: ' Управляющие компании ЖКХ',
-                cnt: ' Реализовано'
-            }, {
-                icon: 'heart.png',
-                title: 'Салоны красоты - Фитнес',
-                cnt: ' Реализовано'
-            }, {
-                icon: 'checked.png',
-                title: 'Другое',
-                cnt: ' Реализовано'
-            },
-        ]
+        async mounted() {
+            await this.$nuxt.$emit('title', this.fetchedData.staticData?.title)
+            await this.$nuxt.$emit('menu', this.fetchedData.menu)
 
-        mounted() {
+
+            // @ts-ignore
+            const deviceType = await this.$nuxt.context.$ua.deviceType()
+            this.userAgent = await deviceType;
         }
     }
 </script>

@@ -1,19 +1,18 @@
 <template>
     <section class="catalog">
-<!--        <div class="catalog-items"></div>-->
-            <a href="javascript:"  class="catalog-item" v-for="item in content">
-                <div class="catalog-item-icon">
-                    <div class="icon">
-                        <img :src="makeIcon(item.icon)" alt="icon"/>
-                    </div>
 
+        <a href="javascript:"  class="catalog-item" v-for="item in content">
+            <div class="catalog-item-icon">
+                <div class="icon">
+                    <img :src="makeIcon(item.icon)" alt="icon"/>
                 </div>
-                <div class="catalog-item-text">
-                    <p v-html="item.title"></p>
-                    <span v-html="item.cnt"></span>
-                </div>
-            </a>
 
+            </div>
+            <div class="catalog-item-text">
+                <p v-html="item.title"></p>
+                <span v-html="item.cnt"></span>
+            </div>
+        </a>
 
     </section>
 </template>
